@@ -57,12 +57,12 @@
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| postcode      | integer    | null: false                    |
+| postcode      | string     | null: false                    |
 | prefecture_id | integer    | null: false                    |
 | city          | string     | null: false                    |
 | block         | string     | null: false                    |
 | building      | string     |                                |
-| phone_number  | integer    | null: false                    |
+| phone_number  | string     | null: false                    |
 | purchase      | references | null: false, foreign_key: true |
 
 ### Association
@@ -73,7 +73,7 @@
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
-| content | text       | null: false                    |
+| content | string     | null: false                    |
 | user    | references | null: false, foreign_key: true |
 | item    | references | null: false, foreign_key: true |
 
@@ -84,11 +84,11 @@
 
 ## favorites テーブル
 
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| count   | integer    |                                |
-| user    | references | null: false, foreign_key: true |
-| item    | references | null: false, foreign_key: true |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| count  | integer    |                                |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
 ### Association
 
