@@ -27,12 +27,12 @@ RSpec.describe User, type: :model do
         another_user = FactoryBot.build(:user)
         another_user.email = @user.email
         another_user.valid?
-        expect(another_user.errors.full_messages).to include("Email has already been taken")
+        expect(another_user.errors.full_messages).to include('Email has already been taken')
       end
       it '@を含まないemailは登録できない' do
         @user.email = 'test'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid")
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
       it 'passwordが空では登録できない' do
         @user.password = ''
@@ -42,28 +42,28 @@ RSpec.describe User, type: :model do
       it 'passwordが5文字以下では登録できない' do
         @user.password = '12345'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+        expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
       it 'passwordが129文字以上では登録できない' do
         @user.password = Faker::Lorem.characters(min_alpha: 1, min_numeric: 1, number: 129)
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is too long (maximum is 128 characters)")
+        expect(@user.errors.full_messages).to include('Password is too long (maximum is 128 characters)')
       end
       it '半角英字のみのpasswordは登録できない' do
         @user.password = 'abcdef'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password には半角英字と半角数字の両方を含めて設定してください")
-      end 
+        expect(@user.errors.full_messages).to include('Password には半角英字と半角数字の両方を含めて設定してください')
+      end
       it '半角数字のみのpasswordは登録できない' do
         @user.password = '123456'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password には半角英字と半角数字の両方を含めて設定してください")
-      end 
+        expect(@user.errors.full_messages).to include('Password には半角英字と半角数字の両方を含めて設定してください')
+      end
       it '全角文字を含むpasswordは登録できない' do
         @user.password = 'test１２'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password には半角英字と半角数字の両方を含めて設定してください")
-      end 
+        expect(@user.errors.full_messages).to include('Password には半角英字と半角数字の両方を含めて設定してください')
+      end
       it 'passwordとpassword_confirmationが不一致では登録できない' do
         @user.password = 'test12'
         @user.password_confirmation = 'test123'
@@ -78,7 +78,7 @@ RSpec.describe User, type: :model do
       it '全角（漢字・ひらがな・カタカナ）以外のlast_nameは登録できない' do
         @user.last_name = 'test'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name 全角文字を使用してください")
+        expect(@user.errors.full_messages).to include('Last name 全角文字を使用してください')
       end
       it 'first_nameが空では登録できない' do
         @user.first_name = ''
@@ -88,7 +88,7 @@ RSpec.describe User, type: :model do
       it '全角（漢字・ひらがな・カタカナ）以外のfirst_nameは登録できない' do
         @user.first_name = 'test'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name 全角文字を使用してください")
+        expect(@user.errors.full_messages).to include('First name 全角文字を使用してください')
       end
       it 'last_name_kanaが空では登録できない' do
         @user.last_name_kana = ''
@@ -98,7 +98,7 @@ RSpec.describe User, type: :model do
       it '全角（カタカナ）以外のlast_name_kanaは登録できない' do
         @user.last_name_kana = 'てすと'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name kana カナ(全角)文字を使用してください")
+        expect(@user.errors.full_messages).to include('Last name kana カナ(全角)文字を使用してください')
       end
       it 'first_name_kanaが空では登録できない' do
         @user.first_name_kana = ''
@@ -108,7 +108,7 @@ RSpec.describe User, type: :model do
       it '全角（カタカナ）以外のfirst_name_kanaは登録できない' do
         @user.first_name_kana = 'てすと'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana カナ(全角)文字を使用してください")
+        expect(@user.errors.full_messages).to include('First name kana カナ(全角)文字を使用してください')
       end
       it 'birthdayが空では登録できない' do
         @user.birthday = nil
