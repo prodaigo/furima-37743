@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
   before_action :move_to_index, only: :edit
+  before_action :find_params, only: [:show, :edit, :update]
 
   def index
     @items = Item.order('created_at DESC')
@@ -20,15 +21,12 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])  # 特定のオブジェクトを取得し、インスタンス変数に代入
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
-    @item = Item.find(params[:id])
     if @item.update(item_params)
       redirect_to action: :show
     else
@@ -45,6 +43,10 @@ class ItemsController < ApplicationController
 
   def move_to_index
     @item = Item.find(params[:id])
-    redirect_to action: :index unless user_signed_in? && current_user.id == @item.user_id
+    redirect_to action: :index unless current_user.id == @item.user_id
+  end
+
+  def find_params
+    @item = Item.find(params[:id])
   end
 end
