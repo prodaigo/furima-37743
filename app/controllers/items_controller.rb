@@ -18,6 +18,10 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+    @item = Item.find(params[:id])  #特定のオブジェクトを取得し、インスタンス変数に代入
+  end
+
   private
 
   def item_params
