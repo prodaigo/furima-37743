@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])  #特定のオブジェクトを取得し、インスタンス変数に代入
+    @item = Item.find(params[:id])  # 特定のオブジェクトを取得し、インスタンス変数に代入
   end
 
   private
