@@ -73,6 +73,16 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include("Phone number Input only number(min: 10, max: 11)")
       end
+      it '電話番号が半角のハイフンを含んでいると保存できない' do
+        @purchase_address.phone_number = '123-4567-8901'
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Phone number Input only number(min: 10, max: 11)")
+      end
+      it "トークンが空では登録できない" do
+        @purchase_address.token = nil
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
 end
