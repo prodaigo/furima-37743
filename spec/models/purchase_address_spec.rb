@@ -83,12 +83,12 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'userが紐付いていなければ購入できない' do
         @purchase_address.user_id = nil
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include()
+        expect(@purchase_address.errors.full_messages).to include("User can't be blank")
       end
       it 'itemが紐付いていなければ購入できない' do
         @purchase_address.item_id = nil
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include()
+        expect(@purchase_address.errors.full_messages).to include("Item can't be blank")
       end
       it "tokenが空では購入できない" do
         @purchase_address.token = nil

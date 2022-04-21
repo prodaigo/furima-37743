@@ -9,6 +9,8 @@ class PurchaseAddress
     validates :city
     validates :block
     validates :phone_number, format: { with: /\A[0-9]{10,11}\z/, message: 'Input only number(min: 10, max: 11)' }
+    validates :user_id
+    validates :item_id
   end
 
   def save
