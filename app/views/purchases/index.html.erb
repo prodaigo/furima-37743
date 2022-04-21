@@ -17,8 +17,6 @@
         </div>
       </div>
     </div>
-
-    <%# 支払額の表示 %>
     <div class='item-payment'>
       <h1 class='item-payment-title'>
         支払金額
@@ -27,8 +25,6 @@
         ¥<%= @item.price %>
       </p>
     </div>
-    <%# /支払額の表示 %>
-
     <%= form_with model: @purchase_address, url: item_purchases_path, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
     <%= render 'shared/error_messages', model: @purchase_address %>
     <%# カード情報の入力 %>
