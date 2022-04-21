@@ -4,7 +4,8 @@ RSpec.describe PurchaseAddress, type: :model do
   describe '商品購入' do
     before do
       user = FactoryBot.create(:user)
-      @purchase_address = FactoryBot.build(:purchase_address, user_id: user.id)
+      item = FactoryBot.create(:item)
+      @purchase_address = FactoryBot.build(:purchase_address, user_id: user.id, item_id: item.id)
     end
 
     context '購入できるとき' do
@@ -78,7 +79,17 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include("Phone number Input only number(min: 10, max: 11)")
       end
-      it "トークンが空では登録できない" do
+      it 'userが紐付いていなければ購入できない' do
+        @purchase_address.user_id = nil
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include()
+      end
+      it 'itemが紐付いていなければ購入できない' do
+        @purchase_address.item_id = nil
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include()
+      end
+      it "tokenが空では購入できない" do
         @purchase_address.token = nil
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include("Token can't be blank")
